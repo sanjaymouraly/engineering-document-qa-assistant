@@ -1,0 +1,38 @@
+# local data (documents, index, renders) — never commit user PDFs
+data/*
+!data/eval_results.json
+*.db
+*.db-wal
+*.db-shm
+
+# environment
+.env
+.venv/
+venv/
+env/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# tools / os
+.streamlit/secrets.toml
+.playwright-mcp/
+.DS_Store
+Thumbs.db
+*.log
+
+# Local caches and generated files
+node_modules/
+*.sqlite3
+coverage/
+.next/
+CHANGELOG.md

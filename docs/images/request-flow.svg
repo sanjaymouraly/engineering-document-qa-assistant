@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 700" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="f" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#42546b"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="700" fill="#f7f9fc"/>
+  <text x="40" y="40" font-size="22" fill="#1d2a3a">One question, end to end (POST /api/v1/ask or the Ask view)</text>
+  <text x="40" y="62" font-size="13" fill="#5a6b80">each box is a real function in the repository; nothing is skipped when the LLM is off</text>
+
+  <g>
+    <rect x="40" y="92" width="255" height="98" rx="9" fill="#fff" stroke="#2f6fb3"/>
+    <text x="54" y="114" font-size="13.5" fill="#1d2a3a">1 · input hygiene</text>
+    <text x="54" y="132" font-size="11.5" fill="#5a6b80">validate question, top_k, tolerance</text>
+    <text x="54" y="148" font-size="11.5" fill="#5a6b80">scope = collection / documents / page</text>
+    <text x="54" y="164" font-size="11.5" fill="#5a6b80">rag.py: RagService.ask()</text>
+
+    <rect x="330" y="92" width="255" height="98" rx="9" fill="#fff" stroke="#b3752f"/>
+    <text x="344" y="114" font-size="13.5" fill="#1d2a3a">2 · hybrid retrieval</text>
+    <text x="344" y="132" font-size="11.5" fill="#5a6b80">FTS5 BM25 + vector cosine + coverage</text>
+    <text x="344" y="148" font-size="11.5" fill="#5a6b80">numeric/table recall fallback, rerank</text>
+    <text x="344" y="164" font-size="11.5" fill="#5a6b80">retrieval/hybrid.py: SearchEngine</text>
+
+    <rect x="620" y="92" width="255" height="98" rx="9" fill="#fff" stroke="#2f855a"/>
+    <text x="634" y="114" font-size="13.5" fill="#1d2a3a">3 · evidence gate</text>
+    <text x="634" y="132" font-size="11.5" fill="#5a6b80">min evidence score, quoted-phrase recall,</text>
+    <text x="634" y="148" font-size="11.5" fill="#5a6b80">asset/variant alignment → honest abstain</text>
+    <text x="634" y="164" font-size="11.5" fill="#5a6b80">rag.py: _evidence_gate()</text>
+
+    <rect x="910" y="92" width="230" height="98" rx="9" fill="#fff" stroke="#a33" stroke-dasharray="6 4"/>
+    <text x="924" y="114" font-size="13.5" fill="#1d2a3a">4 · answer</text>
+    <text x="924" y="132" font-size="11.5" fill="#5a6b80">offline: verbatim digest + citations</text>
+    <text x="924" y="148" font-size="11.5" fill="#5a6b80">LLM: sanitized evidence, instructions</text>
+    <text x="924" y="164" font-size="11.5" fill="#5a6b80">must emit [D# p#:q#] markers</text>
+
+    <rect x="910" y="250" width="230" height="106" rx="9" fill="#fff6e8" stroke="#c07d1a" stroke-width="2"/>
+    <text x="924" y="272" font-size="13.5" fill="#1d2a3a">5 · citation integrity</text>
+    <text x="924" y="290" font-size="11.5" fill="#5a6b80">quote must exist in the cited chunk</text>
+    <text x="924" y="306" font-size="11.5" fill="#5a6b80">and on the cited page (body + tables);</text>
+    <text x="924" y="322" font-size="11.5" fill="#5a6b80">chunk text_sha1 re-checked</text>
+    <text x="924" y="340" font-size="11.5" fill="#5a6b80">claims.py: _check_citation()</text>
+
+    <rect x="620" y="250" width="255" height="106" rx="9" fill="#fff6e8" stroke="#c07d1a" stroke-width="2"/>
+    <text x="634" y="272" font-size="13.5" fill="#1d2a3a">6 · numeric verification</text>
+    <text x="634" y="290" font-size="11.5" fill="#5a6b80">per-sentence values → units via Pint,</text>
+    <text x="634" y="306" font-size="11.5" fill="#5a6b80">Decimal magnitudes, scope qualifiers,</text>
+    <text x="634" y="322" font-size="11.5" fill="#5a6b80">tolerance, table row labels, ranges</text>
+    <text x="634" y="340" font-size="11.5" fill="#5a6b80">verify/numbers.py + claims.py</text>
+
+    <rect x="330" y="250" width="255" height="106" rx="9" fill="#fff6e8" stroke="#c07d1a" stroke-width="2"/>
+    <text x="344" y="272" font-size="13.5" fill="#1d2a3a">7 · conflict report</text>
+    <text x="344" y="290" font-size="11.5" fill="#5a6b80">same quantity, different value across the</text>
+    <text x="344" y="306" font-size="11.5" fill="#5a6b80">cited passages → listed, never auto-resolved</text>
+    <text x="344" y="322" font-size="11.5" fill="#5a6b80">mismatch ⇒ answer withheld and stored</text>
+    <text x="344" y="340" font-size="11.5" fill="#5a6b80">claims.py: find_conflicts()</text>
+
+    <rect x="40" y="250" width="255" height="106" rx="9" fill="#fff" stroke="#6b4fa0"/>
+    <text x="54" y="272" font-size="13.5" fill="#1d2a3a">8 · persist + render</text>
+    <text x="54" y="290" font-size="11.5" fill="#5a6b80">qa_history, qa_citations, num_checks</text>
+    <text x="54" y="306" font-size="11.5" fill="#5a6b80">UI: support badge, per-sentence checks,</text>
+    <text x="54" y="322" font-size="11.5" fill="#5a6b80">View page → highlighted page render</text>
+    <text x="54" y="340" font-size="11.5" fill="#5a6b80">service.py · rendering.py</text>
+
+    <rect x="40" y="420" width="545" height="120" rx="9" fill="#eaf2fb" stroke="#2f6fb3"/>
+    <text x="54" y="442" font-size="13.5" fill="#1d2a3a">What the user sees</text>
+    <text x="54" y="462" font-size="11.5" fill="#5a6b80">• answer text with [D1 p1:q2] style markers and clickable passages</text>
+    <text x="54" y="478" font-size="11.5" fill="#5a6b80">• support: grounded / partially_grounded / abstained  +  per-sentence badges</text>
+    <text x="54" y="494" font-size="11.5" fill="#5a6b80">• every value: Verified · Mismatch · Insufficient Evidence · Ambiguous,</text>
+    <text x="54" y="510" font-size="11.5" fill="#5a6b80">  with the exact source line, unit conversion and tolerance used</text>
+    <text x="54" y="528" font-size="11.5" fill="#5a6b80">• printed page label next to the physical page number; synthetic flags shown</text>
+
+    <rect x="620" y="420" width="520" height="120" rx="9" fill="#fff" stroke="#a33"/>
+    <text x="634" y="442" font-size="13.5" fill="#1d2a3a">Refusal paths (all of them reachable, all tested)</text>
+    <text x="634" y="462" font-size="11.5" fill="#5a6b80">no evidence above threshold → abstain with the reason and the scores seen</text>
+    <text x="634" y="478" font-size="11.5" fill="#5a6b80">quote not found in the cited source → integrity missing_quote → not claimed</text>
+    <text x="634" y="494" font-size="11.5" fill="#5a6b80">answer value contradicts the source → mismatch → withheld, conflicts listed</text>
+    <text x="634" y="510" font-size="11.5" fill="#5a6b80">document deleted later → citations keep the old text but are flagged stale</text>
+    <text x="634" y="528" font-size="11.5" fill="#5a6b80">PDF asks to ignore instructions → masked, flagged in warnings, never obeyed</text>
+  </g>
+
+  <g stroke="#42546b" stroke-width="1.6" fill="none" marker-end="url(#f)">
+    <path d="M295 141 H328"/>
+    <path d="M585 141 H618"/>
+    <path d="M875 141 H908"/>
+    <path d="M1025 190 V248"/>
+    <path d="M908 303 H877"/>
+    <path d="M620 303 H587"/>
+    <path d="M330 303 H297"/>
+    <path d="M167 356 V418"/>
+  </g>
+  <text x="40" y="586" font-size="12.5" fill="#1d2a3a">Ordering matters: the answer is composed from the retrieved passages, then verified against the same passages, and only then stored —</text>
+  <text x="40" y="606" font-size="12.5" fill="#1d2a3a">so a citation the verifier cannot find is either downgraded to “weak/insufficient” in the UI or the answer is refused outright.</text>
+
+  <rect x="40" y="628" width="1100" height="42" rx="8" fill="#fff" stroke="#c07d1a"/>
+  <text x="54" y="654" font-size="12" fill="#8a6d1f">Advisory only: retrieval scores are ranking signals, and a “Verified” badge means “this is what the cited document says” — not that the value is safe to engineer with. Human review stays required.</text>
+</svg>

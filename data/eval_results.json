@@ -1,0 +1,232 @@
+{
+  "summary": {
+    "cases": 18,
+    "passed": 18,
+    "recall@k": 1.0,
+    "citation_accuracy": 1.0,
+    "answer_support_rate": 1.0,
+    "abstention_recall": 1.0,
+    "abstention_precision": 1.0,
+    "numeric_status_accuracy": 1.0,
+    "median_latency_ms": 145.03521800088492,
+    "p95_latency_ms": 237.22374899989518,
+    "per_kind_pass": {
+      "factual": "3/3",
+      "table": "3/3",
+      "convert": "1/1",
+      "compare": "1/1",
+      "missing": "3/3",
+      "adversarial": "1/1",
+      "contradiction": "1/1",
+      "numeric_standalone": "5/5"
+    }
+  },
+  "cases": [
+    {
+      "id": "tr01_rated_voltage",
+      "kind": "factual",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 179.7,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "tr01_losses_table",
+      "kind": "table",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 237.2,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "cable_scc_area",
+      "kind": "table",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "numeric": "ok",
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 301.9,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "cable_derated_240",
+      "kind": "table",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "numeric": "ok",
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 137.5,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "motor_rated_current",
+      "kind": "factual",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "numeric": "ok",
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 179.9,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "vcb_short_time_1s",
+      "kind": "convert",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "numeric": "ok",
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 237.2,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "compare_power",
+      "kind": "compare",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 162.5,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "earth_conductor",
+      "kind": "factual",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 117.6,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "missing_hoverboard",
+      "kind": "missing",
+      "pass": true,
+      "checks": {
+        "abstention": "ok"
+      },
+      "latency_ms": 5.6,
+      "mode": "abstained",
+      "abstained": true
+    },
+    {
+      "id": "missing_weight",
+      "kind": "missing",
+      "pass": true,
+      "checks": {
+        "abstention": "ok"
+      },
+      "latency_ms": 4.5,
+      "mode": "abstained",
+      "abstained": true
+    },
+    {
+      "id": "missing_oil_volume",
+      "kind": "missing",
+      "pass": true,
+      "checks": {
+        "abstention": "ok"
+      },
+      "latency_ms": 46.4,
+      "mode": "abstained",
+      "abstained": true
+    },
+    {
+      "id": "adversarial_injection",
+      "kind": "adversarial",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "numeric": "ok",
+        "citation_integrity": 1.0
+      },
+      "latency_ms": 139.8,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "contradiction_tr_test_voltage",
+      "kind": "contradiction",
+      "pass": true,
+      "checks": {
+        "recall@k": 1.0,
+        "citation_integrity": 1.0,
+        "no_false_conflict": "ok"
+      },
+      "latency_ms": 145.0,
+      "mode": "extractive",
+      "abstained": false
+    },
+    {
+      "id": "num_kv_to_v",
+      "kind": "numeric_standalone",
+      "pass": true,
+      "checks": {
+        "numeric": "ok"
+      }
+    },
+    {
+      "id": "num_kw_kva_not_convertible",
+      "kind": "numeric_standalone",
+      "pass": true,
+      "checks": {
+        "numeric": "ok"
+      }
+    },
+    {
+      "id": "num_wrong_value_detected",
+      "kind": "numeric_standalone",
+      "pass": true,
+      "checks": {
+        "numeric": "ok"
+      }
+    },
+    {
+      "id": "num_rated_vs_max",
+      "kind": "numeric_standalone",
+      "pass": true,
+      "checks": {
+        "numeric": "ok"
+      }
+    },
+    {
+      "id": "num_min_vs_typical",
+      "kind": "numeric_standalone",
+      "pass": true,
+      "checks": {
+        "numeric": "ok"
+      }
+    }
+  ],
+  "generated_at": "2026-10-18T12:40:50Z",
+  "engine": {
+    "embedding_backend": "hashing-ngrams",
+    "fts5": true,
+    "mode": "offline extractive + deterministic verification",
+    "corpus": "synthetic demo manuals (engrag.demo_corpus)"
+  }
+}

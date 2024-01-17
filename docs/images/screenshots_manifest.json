@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-10-18T12:40:27Z",
+  "source": "Playwright chromium against the running Streamlit app",
+  "url": "http://127.0.0.1:8501",
+  "question": "What are the rated voltage and frequency of DEMO-TR-01, and what is its short-circuit impedance?",
+  "screenshots": [
+    {
+      "file": "01_ask_answer.png",
+      "title": "Ask view: extractive answer with citations",
+      "note": "offline mode: verbatim quotes, no generated prose",
+      "bytes": 381020,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "02_ask_numeric_verification.png",
+      "title": "Numeric verification: value-by-value status badges",
+      "note": "",
+      "bytes": 460209,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "03_ask_sentence_checks.png",
+      "title": "Per-sentence support, citation integrity notes",
+      "note": "",
+      "bytes": 545985,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "04_citation_page_highlight.png",
+      "title": "Citation Viewer: source page opened from a citation (rendered page, printed label, values detected on page)",
+      "note": "",
+      "bytes": 474593,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "04b_citation_highlights.png",
+      "title": "Citation Viewer: cited values highlighted on the rendered page",
+      "note": "",
+      "bytes": 476651,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "05_document_library.png",
+      "title": "Document Library: index, statuses, duplicate-safe upload",
+      "note": "",
+      "bytes": 250309,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "06_search_results.png",
+      "title": "Document Search: hybrid BM25 + vector ranking with matched-snippet highlighting",
+      "note": "",
+      "bytes": 268837,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "07_value_verification.png",
+      "title": "Value Verification Engine: unit conversion and scope checks",
+      "note": "11 kV\u219211,000 V passes as unit_verified (an exact conversion) and 145.5 kV matches the DEMO-TR-01 source row; every badge shows the document, page and quoted source value it was checked against",
+      "bytes": 210497,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "08_ai_settings.png",
+      "title": "AI Settings: provider picker, offline default",
+      "note": "",
+      "bytes": 183713,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "09_evaluation.png",
+      "title": "Evaluation Dashboard: measured metrics (re-runnable from this page)",
+      "note": "",
+      "bytes": 317073,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    },
+    {
+      "file": "10_history.png",
+      "title": "History: stored answers, citations and verification results",
+      "note": "",
+      "bytes": 433307,
+      "viewport": {
+        "width": 1500,
+        "height": 1050
+      },
+      "device_scale_factor": 2.0
+    }
+  ],
+  "errors": []
+}

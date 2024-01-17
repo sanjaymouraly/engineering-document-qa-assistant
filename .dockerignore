@@ -1,0 +1,26 @@
+# Keep the build context small and never ship local state or secrets.
+.git
+.gitignore
+.github
+.venv
+venv
+env
+__pycache__
+**/__pycache__
+*.py[cod]
+*.egg-info
+.pytest_cache
+.coverage
+htmlcov
+data
+docs
+tests
+scripts
+sample_data
+.env
+.env.*
+*.db
+*.db-wal
+*.db-shm
+*.log
+.playwright-mcp

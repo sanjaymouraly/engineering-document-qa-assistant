@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 760" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#42546b"/>
+    </marker>
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#8a6d1f"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="760" fill="#f7f9fc"/>
+  <text x="40" y="42" font-size="22" fill="#1d2a3a">Engineering Document Q&amp;A Assistant — component map</text>
+  <text x="40" y="64" font-size="13" fill="#5a6b80">everything inside the solid frame runs offline; the LLM providers are optional and on the right</text>
+
+  <!-- client row -->
+  <rect x="40" y="90" width="250" height="120" rx="10" fill="#ffffff" stroke="#2f6fb3" stroke-width="1.6"/>
+  <text x="58" y="116" font-size="15" fill="#1d2a3a">Streamlit frontend</text>
+  <text x="58" y="136" font-size="11.5" fill="#5a6b80">src/engrag/frontend/app.py</text>
+  <text x="58" y="156" font-size="11.5" fill="#5a6b80">Ask · Library · Search</text>
+  <text x="58" y="172" font-size="11.5" fill="#5a6b80">Citation Viewer · Values</text>
+  <text x="58" y="188" font-size="11.5" fill="#5a6b80">AI Settings · Eval · History</text>
+
+  <rect x="320" y="90" width="230" height="120" rx="10" fill="#ffffff" stroke="#2f6fb3" stroke-width="1.6"/>
+  <text x="338" y="116" font-size="15" fill="#1d2a3a">FastAPI (optional)</text>
+  <text x="338" y="136" font-size="11.5" fill="#5a6b80">src/engrag/api/server.py</text>
+  <text x="338" y="156" font-size="11.5" fill="#5a6b80">/api/v1/ask · /search · /verify</text>
+  <text x="338" y="172" font-size="11.5" fill="#5a6b80">/documents · /pages/{n}/render</text>
+  <text x="338" y="188" font-size="11.5" fill="#5a6b80">/providers · /collections</text>
+
+  <rect x="580" y="90" width="200" height="120" rx="10" fill="#ffffff" stroke="#2f6fb3" stroke-width="1.6"/>
+  <text x="598" y="116" font-size="15" fill="#1d2a3a">CLI</text>
+  <text x="598" y="136" font-size="11.5" fill="#5a6b80">python -m engrag</text>
+  <text x="598" y="156" font-size="11.5" fill="#5a6b80">api · web · build-demo</text>
+  <text x="598" y="172" font-size="11.5" fill="#5a6b80">ask · search · reset</text>
+  <text x="598" y="188" font-size="11.5" fill="#5a6b80">scripts/run_eval.py</text>
+
+  <!-- service -->
+  <rect x="40" y="250" width="740" height="86" rx="10" fill="#eaf2fb" stroke="#2f6fb3" stroke-width="1.6"/>
+  <text x="58" y="278" font-size="15" fill="#1d2a3a">Service facade — src/engrag/service.py + rag.py (RagService)</text>
+  <text x="58" y="298" font-size="11.5" fill="#5a6b80">upload/dedupe/process · reindex · delete (cascades, marks citations stale) · ask() orchestration</text>
+  <text x="58" y="316" font-size="11.5" fill="#5a6b80">evidence gate (refuse on weak evidence) · history persistence · provider config (keys never logged)</text>
+
+  <!-- ingestion -->
+  <rect x="40" y="370" width="350" height="150" rx="10" fill="#ffffff" stroke="#2f855a" stroke-width="1.6"/>
+  <text x="58" y="396" font-size="15" fill="#1d2a3a">Ingestion</text>
+  <text x="58" y="416" font-size="11.5" fill="#5a6b80">ingestion/extract.py: pypdf → pdfplumber</text>
+  <text x="58" y="432" font-size="11.5" fill="#5a6b80">tables as “cell | cell” rows, printed labels</text>
+  <text x="58" y="448" font-size="11.5" fill="#5a6b80">1-based physical pages, OCR if available</text>
+  <text x="58" y="464" font-size="11.5" fill="#5a6b80">ingestion/chunking.py: sentence-aware,</text>
+  <text x="58" y="480" font-size="11.5" fill="#5a6b80">tables kept whole, boilerplate filtered,</text>
+  <text x="58" y="496" font-size="11.5" fill="#5a6b80">overlap carried forward</text>
+
+  <!-- store -->
+  <rect x="410" y="370" width="370" height="150" rx="10" fill="#ffffff" stroke="#6b4fa0" stroke-width="1.6"/>
+  <text x="428" y="396" font-size="15" fill="#1d2a3a">SQLite store — db.py (WAL, one file)</text>
+  <text x="428" y="416" font-size="11.5" fill="#5a6b80">documents · document_pages (printed_label)</text>
+  <text x="428" y="432" font-size="11.5" fill="#5a6b80">document_chunks (kind, text_sha1)</text>
+  <text x="428" y="448" font-size="11.5" fill="#5a6b80">chunks_fts: FTS5 contentless + fts_map</text>
+  <text x="428" y="464" font-size="11.5" fill="#5a6b80">chunk_vectors (persisted embeddings)</text>
+  <text x="428" y="480" font-size="11.5" fill="#5a6b80">qa_history · qa_citations · num_checks</text>
+  <text x="428" y="496" font-size="11.5" fill="#5a6b80">collections · settings</text>
+
+  <!-- retrieval -->
+  <rect x="40" y="550" width="350" height="140" rx="10" fill="#ffffff" stroke="#b3752f" stroke-width="1.6"/>
+  <text x="58" y="576" font-size="15" fill="#1d2a3a">Hybrid retrieval — retrieval/</text>
+  <text x="58" y="596" font-size="11.5" fill="#5a6b80">keyword.py: BM25 over FTS5 (LIKE fallback)</text>
+  <text x="58" y="612" font-size="11.5" fill="#5a6b80">embeddings.py: sentence-transformers or</text>
+  <text x="58" y="628" font-size="11.5" fill="#5a6b80">hashing n-gram vectors (no download)</text>
+  <text x="58" y="644" font-size="11.5" fill="#5a6b80">hybrid.py: 0.55 lexical + 0.30 cosine</text>
+  <text x="58" y="660" font-size="11.5" fill="#5a6b80">+ 0.15 coverage, boosts, numeric recall</text>
+  <text x="58" y="676" font-size="11.5" fill="#8a6d1f">score is a ranking signal, not a probability</text>
+
+  <!-- verification -->
+  <rect x="410" y="550" width="370" height="140" rx="10" fill="#fff6e8" stroke="#c07d1a" stroke-width="2.2"/>
+  <text x="428" y="576" font-size="15" fill="#1d2a3a">Engineering Value Verification Engine</text>
+  <text x="428" y="596" font-size="11.5" fill="#5a6b80">verify/numbers.py: Decimal + Pint units,</text>
+  <text x="428" y="612" font-size="11.5" fill="#5a6b80">qualifiers (rated/max/nominal/typical),</text>
+  <text x="428" y="628" font-size="11.5" fill="#5a6b80">tolerances, ranges, °C, phase, kVA vs kW,</text>
+  <text x="428" y="644" font-size="11.5" fill="#5a6b80">variant model numbers, table row labels</text>
+  <text x="428" y="664" font-size="11.5" fill="#5a6b80">verify/claims.py + textmatch.py: quote existence,</text>
+  <text x="428" y="678" font-size="11.5" fill="#5a6b80">Verified · Mismatch · Insufficient · Ambiguous</text>
+
+  <!-- providers -->
+  <rect x="830" y="250" width="310" height="270" rx="10" fill="#ffffff" stroke="#a33" stroke-width="1.6" stroke-dasharray="7 4"/>
+  <text x="848" y="276" font-size="15" fill="#1d2a3a">LLM adapters — llm/providers.py</text>
+  <text x="848" y="298" font-size="11.5" fill="#5a6b80">offline (extractive, default)</text>
+  <text x="848" y="314" font-size="11.5" fill="#5a6b80">ollama (local /api/chat)</text>
+  <text x="848" y="330" font-size="11.5" fill="#5a6b80">openai (chat/completions)</text>
+  <text x="848" y="346" font-size="11.5" fill="#5a6b80">anthropic (native /v1/messages)</text>
+  <text x="848" y="362" font-size="11.5" fill="#5a6b80">openrouter · custom OpenAI-compatible</text>
+  <text x="848" y="386" font-size="11.5" fill="#a33">optional: never called unless you</text>
+  <text x="848" y="402" font-size="11.5" fill="#a33">select and save a provider here</text>
+  <text x="848" y="426" font-size="11.5" fill="#5a6b80">model list read from the endpoint —</text>
+  <text x="848" y="442" font-size="11.5" fill="#5a6b80">no invented model ids</text>
+  <text x="848" y="466" font-size="11.5" fill="#5a6b80">sanitizer.py masks instructions inside PDFs;</text>
+  <text x="848" y="482" font-size="11.5" fill="#5a6b80">logging_setup.py masks keys in every log line</text>
+  <text x="848" y="502" font-size="11.5" fill="#5a6b80">cost estimate + soft budget warning</text>
+
+  <rect x="830" y="550" width="310" height="140" rx="10" fill="#ffffff" stroke="#2f6fb3" stroke-width="1.6"/>
+  <text x="848" y="576" font-size="15" fill="#1d2a3a">Page rendering — rendering.py</text>
+  <text x="848" y="596" font-size="11.5" fill="#5a6b80">pypdfium2 rasterise (cached PNG)</text>
+  <text x="848" y="612" font-size="11.5" fill="#5a6b80">pdfplumber word boxes →</text>
+  <text x="848" y="628" font-size="11.5" fill="#5a6b80">phrase highlights, points × scale</text>
+  <text x="848" y="644" font-size="11.5" fill="#5a6b80">pixel-tested in tests/test_rendering.py</text>
+  <text x="848" y="668" font-size="11.5" fill="#5a6b80">used by the Citation Viewer and</text>
+  <text x="848" y="684" font-size="11.5" fill="#5a6b80">GET /documents/{id}/pages/{n}/render</text>
+
+  <!-- arrows -->
+  <g stroke="#42546b" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <path d="M290 150 H318"/>
+    <path d="M550 150 H578"/>
+    <path d="M165 210 V248"/>
+    <path d="M435 210 V248"/>
+    <path d="M680 210 V248"/>
+    <path d="M215 336 V368"/>
+    <path d="M595 336 V368"/>
+    <path d="M390 445 H408"/>
+    <path d="M215 520 V548"/>
+    <path d="M595 520 V548"/>
+    <path d="M390 620 H408"/>
+  </g>
+  <g stroke="#8a6d1f" stroke-width="1.5" fill="none" marker-end="url(#a2)" stroke-dasharray="6 4">
+    <path d="M780 292 H828"/>
+    <path d="M830 430 C 780 470 700 470 660 338"/>
+    <path d="M985 520 V548"/>
+  </g>
+  <text x="40" y="726" font-size="11.5" fill="#5a6b80">solid = offline path (always available) · dashed = only when a paid/local LLM is explicitly configured · every answer, citation and numeric check is stored in SQLite</text>
+  <text x="40" y="746" font-size="11.5" fill="#5a6b80">retrieval feeds both the extractive digest and the verification engine, so the same evidence the user can click is the evidence that was checked</text>
+</svg>

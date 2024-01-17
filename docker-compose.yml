@@ -1,0 +1,47 @@
+# Optional Docker Compose startup for the Engineering RAG Assistant.
+#
+#   docker compose up --build          # UI on http://localhost:8501
+#                                      # API on http://localhost:8502/docs
+#
+# Both services share one named volume, so documents uploaded through the UI
+# are immediately searchable through the API and vice versa.  No credentials
+# are needed: the default provider is the offline extractive mode.
+services:
+  web:
+    build: .
+    image: engineering-rag-assistant:local
+    command: ["python", "-m", "engrag", "web"]
+    ports:
+      - "8501:8501"
+    volumes:
+      - engrag-data:/data
+    environment:
+      ENGRAG_DATA_DIR: /data
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import httpx,sys;sys.exit(0 if httpx.get('http://127.0.0.1:8501/_stcore/health',timeout=5).status_code==200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 45s
+
+  api:
+    build: .
+    image: engineering-rag-assistant:local
+    command: ["python", "-m", "engrag", "api"]
+    ports:
+      - "8502:8502"
+    volumes:
+      - engrag-data:/data
+    environment:
+      ENGRAG_DATA_DIR: /data
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import httpx,sys;sys.exit(0 if httpx.get('http://127.0.0.1:8502/api/v1/health',timeout=5).status_code==200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  engrag-data:
